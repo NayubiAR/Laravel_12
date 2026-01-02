@@ -39,9 +39,9 @@ html {
 /* Tambahkan CSS yang sudah ada sebelumnya */
 
 .bg-login {
-    background: url(../img/BgLogin.png);
-    background-size: 70% auto;
-    background-position: left bottom;
+    background: url(../img/LogoTentorSebaya.png);
+    background-size: 40% auto;
+    background-position: center left;
     background-repeat: no-repeat;
     min-height: 100vh;
 }
@@ -57,8 +57,8 @@ html {
 }
 
 .codeflix-title {
-    width: 211px;
-    height: 33px;
+    width: 219px;
+    height: 187px;
 }
 
 .codeflix-sign-in {

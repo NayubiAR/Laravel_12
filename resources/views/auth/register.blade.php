@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title', 'Register')
-@section('page-title', 'Create Account')
+@section('page-title', '- Buat Akun Baru -')
 
 @section('content')
     <form class="form" action="{{ route('register') }}" method="POST">
@@ -9,7 +9,7 @@
         <div class="mb-3 f-email">
             <input type="text" name="name" class="form-control form-email @error('name') is-invalid @enderror"
                 id="InputEmail" value="{{ old('name') }}" required autofocus>
-            <label for="InputEmail" class="form-label form-label-email">Full Name</label>
+            <label for="InputEmail" class="form-label form-label-email">Nama Lengkap</label>
         </div>
         <div class="mb-3 f-email">
             <input type="email" name="email" class="form-control form-email @error('email') is-invalid @enderror"
@@ -25,26 +25,29 @@
         <div class="mb-3 f-password">
             <input type="password" name="password_confirmation" class="form-control form-password"
                 id="InputPasswordConfirmation" required>
-            <label for="InputPassword" class="form-label form-label-password">Confirm Password</label>
-            <i class="fa fa-eye-slash toggle-password" id="togglePassword"></i>
+            <label for="InputPassword" class="form-label form-label-password">Konfirmasi Password</label>
+            <i class="fa fa-eye-slash toggle-password" id="togglePasswordConfirmation"></i>
         </div>
-        <button type="submit" class="btn btn-primary btn-sign-in">Register</button>
+        <button type="submit" class="btn btn-primary btn-sign-in">Buat akun</button>
         <div class="mt-3 text-center">
-            <span class="register">Already have an account? <a href="{{ route('login') }}">Login</a></span>
+            <span class="register">Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></span>
         </div>
     </form>
 @endsection
 
 @section('scripts')
     <script>
-        document.querySelectorAll('.toggle-password').forEach(toggle => {
-            toggle.addEventListener('click', function() {
-                const input = this.previousElementSibling;
-                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-                input.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
-                this.classList.toggle('fa-eye-slash');
-            });
+    const toggleIcons = document.querySelectorAll('.toggle-password');
+
+    toggleIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            const wrapper = this.closest('.f-password');
+            const input = wrapper.querySelector('input');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
         });
-    </script>
+    });
+</script>
 @endsection
