@@ -12,11 +12,23 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
 
+
+    public function register(): void
+    {
+        $this->app->instance(RegisterViewResponse::class, new class implements RegisterViewResponse
+        {
+            public function toResponse($request)
+            {
+                return view('subscribe.plans');
+            }
+        });
+    }
     /**
      * Bootstrap any application services.
      */
