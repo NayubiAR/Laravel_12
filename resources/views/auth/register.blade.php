@@ -36,7 +36,7 @@
 @endsection
 
 @section('scripts')
-    <script>
+<script>
     const toggleIcons = document.querySelectorAll('.toggle-password');
 
     toggleIcons.forEach(icon => {
