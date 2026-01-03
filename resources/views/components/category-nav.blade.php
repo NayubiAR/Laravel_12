@@ -14,5 +14,5 @@
             @endforeach
         </div>
     </li>
-    {{-- <li class="nav-item"><a class="nav-link text-white" href="{{ route('movies.index') }}">Kelas</a></li> --}}
+    <li class="nav-item"><a class="nav-link text-white" href="{{ route('movies.index') }}">Kelas</a></li>
 </ul>
