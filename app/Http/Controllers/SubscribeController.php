@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Plan;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 class SubscribeController extends Controller implements HasMiddleware
@@ -22,10 +21,6 @@ class SubscribeController extends Controller implements HasMiddleware
         return [
 
             'auth',
-
-            new Middleware('log', only: ['index']),
-
-            new Middleware('subscribed', except: ['store']),
 
         ];
 

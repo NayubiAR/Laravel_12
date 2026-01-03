@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
@@ -28,7 +30,20 @@ class FortifyServiceProvider extends ServiceProvider
                 return view('subscribe.plans');
             }
         });
+
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
+            public function toResponse($request)
+            {
+                if(Auth::user()->hasMembershipPlan()) {
+                    return redirect()->intended(config('fortify.home'));
+                }
+
+                return redirect()->route('subscribe.plans');
+            }
+        });
     }
+
     /**
      * Bootstrap any application services.
      */
@@ -50,7 +65,7 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        
+
         Fortify::registerView(function () {
             return view('auth.register');
         });
@@ -62,7 +77,7 @@ class FortifyServiceProvider extends ServiceProvider
         fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');
         });
-        
+
         Fortify::resetPasswordView(function ($request) {
             return view('auth.reset-password', ['request' => $request]);
         });
