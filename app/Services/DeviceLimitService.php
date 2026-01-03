@@ -7,7 +7,6 @@ use App\Models\UserDevice;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Facades\Agent;
 
-
 class DeviceLimitService
 {
     public function registerDevice(User $user)

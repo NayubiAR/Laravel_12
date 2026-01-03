@@ -5,7 +5,8 @@
 
 @section('content')
     <div class="mt-5 text-center">
-        <img src="{{ asset('assets/img/LogoTentorSebaya.png') }}" alt="Codeflix" class="mb-4" style="height: 60px;">
+            <img src="{{ asset('assets/img/LogoTentorSebaya-full.png') }}" class="mb-4" style="height: 150px" alt="Logo Tentor Sebaya">
+
         <h2 class="mb-2 text-white">Yay! Selamat Pembayaran Kamu</h2>
         <h3 class="mb-4 text-white">Telah Berhasil!!!</h3>
         <div class="mb-4 text-success">
