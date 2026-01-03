@@ -17,6 +17,8 @@ class MovieController extends Controller implements HasMiddleware
         ];
     }
 
+    protected $appends = ['average_rating'];
+
     public function index()
     {
         $latestMovies = Movie::latest()->limit(8)->get();
@@ -28,6 +30,16 @@ class MovieController extends Controller implements HasMiddleware
         return view('movies.index', [
             'latestMovies' => $latestMovies,
             'popularMovies' => $popularMovies,
+        ]);
+    }
+
+    public function show(Movie $movie)
+    {
+        $userPlan = Auth::user()->getCurrentPlan();
+        $streamingUrl = $movie->getStreamingUrl($userPlan->resolution);
+        return view('movies.show', [
+            'movie' => $movie,
+            'streamingUrl' => $streamingUrl
         ]);
     }
 }
