@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -8,9 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('movies.index');
-})->middleware('auth', 'check.device.limit')->name('home');
+Route::get('/home', [MovieController::class, 'index'])->name('home');
 
 Route::get('/subscribe/plans', [SubscribeController::class, 'showPlans'])->name('subscribe.plans');
 Route::get('/subscribe/plan/{plan}', [SubscribeController::class, 'checkoutPlan'])->name('subscribe.checkout');
