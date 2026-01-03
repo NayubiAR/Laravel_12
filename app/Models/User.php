@@ -51,11 +51,17 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class);
     }
 
+
     public function hasMembershipPlan(): bool
     {
         return $this->memberships()
-            ->where('active', true)
-            ->where('end_date', '>', now())
-            ->exists();
+        ->where('active', true)
+        ->where('end_date', '>', now())
+        ->exists();
+    }
+
+    public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserDevice::class);
     }
 }
