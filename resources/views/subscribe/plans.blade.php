@@ -1,6 +1,6 @@
 @extends('layouts.subscribe')
 
-@section('title', 'Plan Detail')
+@section('title', 'Detail Rencana Langganan')
 @section('page-title', 'Detail Rencana Langganan')
 
 @section('content')
@@ -27,9 +27,9 @@
                             <h6 class="text-white">Perangkat yang bisa dipakai secara bersamaan</h6>
                             <p class="mb-0 text-green">{{ $plan->max_devices }} Perangkat</p>
                         </div>
-                        {{-- <div class="mt-auto">
+                        <div class="mt-auto">
                             <a href="{{ route('subscribe.checkout', $plan) }}" class="btn btn-green w-100">Pilih Rencana Langganan</a>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
